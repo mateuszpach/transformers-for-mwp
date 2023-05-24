@@ -1,0 +1,10 @@
+Follow the examples and respond to the question in a similar manner. You can do all the reasoning you want, but your last sentence has to begin with 'The answer is '.
+
+Q: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there will be 21 trees. How many trees did the grove workers plant today?
+A: The answer is 6
+
+Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?
+A: The answer is 5
+
+Q: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?
+A: The answer is 8
