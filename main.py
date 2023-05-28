@@ -4,12 +4,18 @@ import csv
 import time
 import json
 import argparse
+import wandb
 
 from utils import extract_number_from_answer
 
-
 # OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+run = wandb.init(
+    # Set the wandb project where this run will be logged
+    project="mwp",
+)
+config = run.config
 
 
 def data_reader(args):
@@ -74,8 +80,15 @@ def main():
     parser.add_argument("--eng", default="gpt-3.5-turbo", type=str, help="Engine")
     parser.add_argument("--temp", default=0.0, type=float, help="Temperature for generation")
     parser.add_argument("--max_tokens", default=1024, type=int, help="Max # of tokens for generation")
+    parser.add_argument("--test_size", default=3, type=int, help="Size of the dataset to test")
 
     args = parser.parse_args()
+
+    config.dataset = args.dataset
+    config.eng = args.eng
+    config.temp = args.temp
+    config.max_tokens = args.max_tokens
+    config.test_size = args.test_size
 
     dataset_paths = {"gsm8k": "gsm8k/gsm8k.jsonl"}
     args.dataset_path = "dataset/{}".format(dataset_paths[args.dataset])
@@ -94,11 +107,14 @@ def main():
     with open(f"prompt/{args.dataset}/{args.dataset}.txt", "r", encoding='utf-8') as f:
         prompt = f.read().strip()
 
+    config.prompt = prompt
+
     count = 0
     correct = 0.0
     model_output = open('dataset/gsm8k/model_output.txt', 'w')
-    # For testing purposes qa_pairs len set to 2
-    for (question, answer) in qa_pairs[:100]:
+
+    table = wandb.Table(columns=["question", "answer"])
+    for (question, answer) in qa_pairs[:args.test_size]:
         count += 1
         while True:
             try:
@@ -108,13 +124,17 @@ def main():
                                                      temperature=args.temp)
 
                 model_answer = ' '.join(model_answer.split())
+                table.add_data(question, model_answer)
+
                 model_output.write(model_answer + '\n')
 
                 model_answer = extract_number_from_answer(model_answer)
 
                 if model_answer == answer:
                     correct += 1
-                print("Correct ration: ", correct / count)
+
+                acc = correct / count
+                print("Correct ratio: ", acc)
                 time.sleep(21)
                 break
 
@@ -123,6 +143,8 @@ def main():
                 time.sleep(5)
 
     model_output.close()
+    run.log({"accuracy": acc})
+    run.log({"table_qa": table})
 
 
 if __name__ == '__main__':
