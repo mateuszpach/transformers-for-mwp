@@ -10,8 +10,10 @@ def extract_number_from_answer(answer):
 
     answer = answer.split('The answer is ')[-1].strip('$')
 
-    print(answer)
     pattern = r"-?\d*\.?\d+"
-    number = re.findall(pattern, answer)[0]
+    number = re.findall(pattern, answer)
 
-    return number
+    if len(number) == 0:
+        return -1
+
+    return number[0]

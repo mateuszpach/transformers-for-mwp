@@ -96,28 +96,33 @@ def main():
 
     count = 0
     correct = 0.0
+    model_output = open('dataset/gsm8k/model_output.txt', 'w')
     # For testing purposes qa_pairs len set to 2
-    for (question, answer) in qa_pairs[:2]:
+    for (question, answer) in qa_pairs[:100]:
         count += 1
         while True:
             try:
-                print(question)
                 # Try to get the answer
                 model_answer = get_answer_from_model(prompt, question,
                                                      eng=args.eng, max_tokens=args.max_tokens,
                                                      temperature=args.temp)
-                # TODO: good to save the model answer somewhere?
+
+                model_answer = ' '.join(model_answer.split())
+                model_output.write(model_answer + '\n')
+
                 model_answer = extract_number_from_answer(model_answer)
-                print(model_answer)
 
                 if model_answer == answer:
                     correct += 1
                 print("Correct ration: ", correct / count)
+                time.sleep(21)
                 break
 
             except Exception as e:
                 print(repr(e))
                 time.sleep(5)
+
+    model_output.close()
 
 
 if __name__ == '__main__':
