@@ -1,0 +1,19 @@
+Follow the given examples and answer the question.
+
+Q: Meredith is a freelance blogger who writes about health topics and submits to clients each day as her permanent job. A blog article takes an average of 4 hours to research and write about. Last week, she wrote 5 articles on Monday and  2/5 times more articles on Tuesday than on Monday. On Wednesday, she wrote twice the number of articles she wrote on Tuesday. Calculate the total number of hours she spent writing articles in the three days.
+
+A: The variables in the task are:
+h = 4 - the number of hours it takes to write one article
+x = 5 - the number of articles she wrote on Monday
+y = 2/5 - how many times more articles she wrote on Tuesday than on Monday
+z = 2 - how many times more articles she wrote on Wednesday than on Tuesday
+The goal is to find:
+r = ? - the total number of hours she spent writing articles in the three days
+
+Let's sequentially expand the variables list until we find the answer.
+x + y * x = 5 + 2/5 * 5 = 5 + 2 = 7 - the number of articles she wrote on Tuesday
+z * (x + y * x) = 2 * 7 = 14 - the number of articles she wrote on Wednesday
+x + y * x + z * (x + y * x) = 5 + 7 + 14 = 26 - the total number of articles she wrote in the three days
+h * (x + y * x + z * (x + y * x)) = 4 * 26 = 104 - the total number of hours she spent writing articles in the three days
+
+The answer is 104
