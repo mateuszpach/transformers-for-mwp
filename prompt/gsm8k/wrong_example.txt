@@ -1,0 +1,27 @@
+Q: Angelo and Melanie want to plan how many hours over the next week they should study together for their test next week. They have 2 chapters of their textbook to study and 4 worksheets to memorize. They figure out that they should dedicate 3 hours to each chapter of their textbook and 1.5 hours for each worksheet. If they plan to study no more than 4 hours each day, how many days should they plan to study total over the next week if they take a 10-minute break every hour, include 3 10-minute snack breaks each day, and 30 minutes for lunch each day?
+A: The variables in the task are:
+x = 2 - the number of chapters of their textbook to study
+y = 4 - the number of worksheets to memorize
+z = 3 - the number of hours to study each chapter of their textbook
+w = 1.5 - the number of hours to study each worksheet
+v = 4 - the number of hours to study each day
+u = 10 - the number of minutes to take a break every hour
+t = 10 - the number of minutes to take a snack break
+n = 3 - the number of snack breaks each day
+m = 30 - the number of minutes to take a lunch break each day
+The goal is to find:
+q = ? - the number of days to study total over the next week
+Let's sequentially expand the variables list until we find the answer.
+x * z = 2 * 3 = 6 - the number of hours to study all chapters of their textbook
+y * w = 4 * 1.5 = 6 - the number of hours to study all worksheets
+x * z + y * w = 6 + 6 = 12 - the number of hours to study all chapters of their textbook and all worksheets
+(x * z + y * w) * 60 = 12 * 60 = 720 - the number of minutes to study all chapters of their textbook and all worksheets
+(x * z + y * w) * u = 12 * 10 = 120 - the number of minutes to take a break every hour while studying in total
+(x * z + y * w) * 60 + (x * z + y * w) * u = 720 + 120 = 840 - the number of minutes to study and take breaks in total over the next week
+n * t = 3 * 10 = 30 - the number of minutes to take snack breaks each day
+n * t + m = 30 + 30 = 60 - the number of minutes to take snack breaks and lunch break each day
+v * 60 = 4 * 60 = 240 - the number of minutes to study each day
+v * 60 - (n * t + m) = 240 - 60 = 180 - the number of minutes to study each day after subtracting snack breaks and lunch break
+((x * z + y * w) * 60 + (x * z + y * w) * u) / (v * 60 - (n * t + m)) = 840 / 180 = 4.666666666666667 - the number of days to study total over the next week
+
+The answer is 4, except for it is not

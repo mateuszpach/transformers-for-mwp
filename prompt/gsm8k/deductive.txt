@@ -1,19 +1,33 @@
-Follow the given examples and answer the question.
+Follow the examples and respond to the question in a similar manner. You can do all the reasoning you want, but your last sentence has to begin with 'The answer is '.
 
-Q: Meredith is a freelance blogger who writes about health topics and submits to clients each day as her permanent job. A blog article takes an average of 4 hours to research and write about. Last week, she wrote 5 articles on Monday and  2/5 times more articles on Tuesday than on Monday. On Wednesday, she wrote twice the number of articles she wrote on Tuesday. Calculate the total number of hours she spent writing articles in the three days.
-
+Q: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there will be 21 trees. How many trees did the grove workers plant today?
 A: The variables in the task are:
-h = 4 - the number of hours it takes to write one article
-x = 5 - the number of articles she wrote on Monday
-y = 2/5 - how many times more articles she wrote on Tuesday than on Monday
-z = 2 - how many times more articles she wrote on Wednesday than on Tuesday
+x = 15 - the number of trees in the grove
+y = 21 - the number of trees in the grove after planting
 The goal is to find:
-r = ? - the total number of hours she spent writing articles in the three days
-
+z = ? - the number of trees the grove workers planted today
 Let's sequentially expand the variables list until we find the answer.
-x + y * x = 5 + 2/5 * 5 = 5 + 2 = 7 - the number of articles she wrote on Tuesday
-z * (x + y * x) = 2 * 7 = 14 - the number of articles she wrote on Wednesday
-x + y * x + z * (x + y * x) = 5 + 7 + 14 = 26 - the total number of articles she wrote in the three days
-h * (x + y * x + z * (x + y * x)) = 4 * 26 = 104 - the total number of hours she spent writing articles in the three days
+y - x = 21 - 15 = 6 - the number of trees the grove workers planted today
+The answer is 6
 
-The answer is 104
+Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?
+A: The variables in the task are:
+x = 3 - the number of cars in the parking lot
+y = 2 - the number of cars that arrived
+The goal is to find:
+z = ? - the number of cars in the parking lot after the cars arrived
+Let's sequentially expand the variables list until we find the answer.
+x + y = 3 + 2 = 5 - the number of cars in the parking lot after the cars arrived
+The answer is 5
+
+Q: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?
+A: The variables in the task are:
+x = 23 - the amount of money Olivia has
+y = 5 - the number of bagels she bought
+z = 3 - the price of one bagel
+The goal is to find:
+r = ? - the amount of money Olivia has left
+Let's sequentially expand the variables list until we find the answer.
+y * z = 5 * 3 = 15 - the amount of money Olivia spent on bagels
+x - y * z = 23 - 15 = 8 - the amount of money Olivia has left
+The answer is 8

@@ -1,0 +1,58 @@
+Follow the examples and respond to the question in a similar manner. You can do all the reasoning you want, but your last sentence has to begin with 'The answer is '.
+
+Q: Mark's basketball team scores 25 2 pointers, 8 3 pointers and 10 free throws.  Their opponents score double the 2 pointers but half the 3 pointers and free throws.  What's the total number of points scored by both teams added together?
+A: The variables in the task are:
+x = 25 - the number of 2 pointers scored by Mark's team
+y = 8 - the number of 3 pointers scored by Mark's team
+z = 10 - the number of free throws scored by Mark's team
+m = 2 - what part of the 2 pointers scored by Mark's team did his opponents score
+n = 0.5 - what part of the 3 pointers scored by Mark's team did his opponents score
+o = 0.5 - what part of the free throws scored by Mark's team did his opponents score
+The goal is to find:
+p = ? - the total number of points scored by both teams added together
+Let's sequentially expand the variables list until we find the answer.
+x * 2 = 25 * 2 = 50 - the number of points scored by Mark's team in 2 pointers
+y * 3 = 8 * 3 = 24 - the number of points scored by Mark's team in 3 pointers
+z * 1 = 10 * 1 = 10 - the number of points scored by Mark's team in free throws
+(x * 2) * m = 50 * 2 = 100 - the number of points scored by Mark's opponents in 2 pointers
+(y * 3) * n = 24 * 0.5 = 12 - the number of points scored by Mark's opponents in 3 pointers
+(z * 1) * o = 10 * 0.5 = 5 - the number of points scored by Mark's opponents in free throws
+(x * 2) + (y * 3) + (z * 1) = 50 + 24 + 10 = 84 - the total number of points scored by Mark's team
+((x * 2) * m) + ((y * 3) * n) + ((z * 1) * o) = 100 + 12 + 5 = 117 - the total number of points scored by Mark's opponents
+((x * 2) + (y * 3) + (z * 1)) + (((x * 2) * m) + ((y * 3) * n) + ((z * 1) * o)) = 84 + 117 = 201 - the total number of points scored by both teams added together
+The answer is 201
+
+Q: Bella has two times as many marbles as frisbees. She also has 20 more frisbees than deck cards. If she buys 2/5 times more of each item, what would be the total number of the items she will have if she currently has 60 marbles?
+A: The variables in the task are:
+x = 2 - the number of marbles Bella has for each frisbee
+y = 20 - the number of frisbees Bella has more than deck cards
+z = 0.4 - the number of items Bella buys more per each owned item
+k = 60 - the number of marbles Bella currently has
+The goal is to find:
+p = ? - the total number of items Bella will have if after buying more items
+Let's sequentially expand the variables list until we find the answer.
+k / x = 60 / 2 = 30 - the number of frisbees Bella has
+k / x - y = 30 - 20 = 10 - the number of deck cards Bella has
+k + k / x + k / x - y = 60 + 30 + 10 = 100 - the total number of items Bella currently has
+(k * z + (k / x) * z + (k / x - y)) * z = (60 * 0.4 + (30 * 0.4) + (10 * 0.4)) * 0.4 = 24 + 12 + 4 = 40 - the total number of items Bella will buy
+(k + k / x + k / x - y) + ((k * z + (k / x) * z + (k / x - y)) * z) = 100 + 40 = 140 - the total number of items Bella will have
+The answer is 140
+
+Question: A group of 4 fruit baskets contains 9 apples, 15 oranges, and 14 bananas in the first three baskets and 2 less of each fruit in the fourth basket. How many fruits are there?
+A: The variables in the task are:
+g = 3 - the number of baskets containing a apples, o oranges, and b bananas
+a = 9 - the number of apples in the first g baskets
+o = 15 - the number of oranges in the first g baskets
+b = 14 - the number of bananas in the first g baskets
+c = 2 - how many less of each fruit are in the last basket
+The goal is to find:
+p = ? - the total number of fruits in the four baskets
+Let's sequentially expand the variables list until we find the answer.
+a + o + b = 9 + 15 + 14 = 38 - the number of fruits in each of the first g baskets
+(a + o + b) * g = 38 * 3 = 114 - the number of fruits in the first g baskets
+a - c = 9 - 2 = 7 - the number of apples in the last basket
+o - c = 15 - 2 = 13 - the number of oranges in the last basket
+b - c = 14 - 2 = 12 - the number of bananas in the last basket
+a - c + o - c + b - c = 7 + 13 + 12 = 32 - the number of fruits in the last basket
+(a + o + b) * g + (a - c + o - c + b - c) = 114 + 32 = 146 - the total number of fruits in the four baskets
+The answer is 146
