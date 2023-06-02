@@ -81,6 +81,7 @@ def main():
     parser.add_argument("--temp", default=0.0, type=float, help="Temperature for generation")
     parser.add_argument("--max_tokens", default=1024, type=int, help="Max # of tokens for generation")
     parser.add_argument("--test_size", default=3, type=int, help="Size of the dataset to test")
+    parser.add_argument("--prompt", default="gsm8k", type=str, help="Prompt to use")
 
     args = parser.parse_args()
 
@@ -104,14 +105,14 @@ def main():
             writer.writerow([number])
 
     # Load the initial prompt
-    with open(f"prompt/{args.dataset}/{args.dataset}.txt", "r", encoding='utf-8') as f:
+    with open(f"prompt/{args.dataset}/{args.prompt}.txt", "r", encoding='utf-8') as f:
         prompt = f.read().strip()
 
     config.prompt = prompt
 
     count = 0
     correct = 0.0
-    model_output = open('dataset/gsm8k/model_output.txt', 'w')
+    model_output = open(f'dataset/gsm8k/model_output_{args.prompt}.txt', 'w')
 
     table = wandb.Table(columns=["question", "answer"])
     for (question, answer) in qa_pairs[:args.test_size]:
