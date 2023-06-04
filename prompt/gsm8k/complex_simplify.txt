@@ -17,7 +17,7 @@ The answer is 201
 
 Q: Bella has two times as many marbles as frisbees. She also has 20 more frisbees than deck cards. If she buys 2/5 times more of each item, what would be the total number of the items she will have if she currently has 60 marbles?
 A: Let's simplify the problem statement without skipping any important information
-Bella has 60 marbles. She has twice as many marbles as frisbees. She also has 20 more frisbees than deck cars. If Bella buys 2/5 times more of each item, how many marbles, frisbees, and deck cards will she have in total?
+Bella has 60 marbles. She has twice as many marbles as frisbees. She also has 20 more frisbees than deck cards. If Bella buys 2/5 times more of each item, how many marbles, frisbees, and deck cards will she have in total?
 Let's think step by step
 When Bella buys 2/5 times more marbles, she'll have increased the number of marbles by 2/5*60 = 24
 The total number of marbles she'll have is 60+24 = 84
