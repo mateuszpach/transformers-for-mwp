@@ -136,7 +136,7 @@ def main():
 
                 acc = correct / count
                 print("Correct ratio: ", acc)
-                time.sleep(21)
+                time.sleep(3)
                 break
 
             except Exception as e:
