@@ -1,0 +1,43 @@
+# use with the options:
+# --interactive_strategy=True --prompt=interactive_chain --max_tokens=3060 --split_PQ=True --interactive_strategy_failsafe=FINAL --assistant_role=concise
+
+START
+####
+Problem: ##P##
+the Question: ##Q##
+Without calculations or explanations, List all the integer values present in the problem that are relevant to obtaining the answer to the Question. Each entry should be formatted as "integer value=the formula you used" : "short description"
+######
+.* ###  EXPAND
+########
+
+EXPAND
+####
+Without explanations, create all new integer values, that are needed to answer the Question, by combining the integer values from the List with simple operators. Extend the List with the new values, keep the "new integer value=math formula used " : "short description" formatting.
+######
+.* ###  CONTAINS
+########
+
+CONTAINS
+####
+the Question: ##Q##
+Is the the answer to the Question present in the List? Provide only yes/no answer
+######
+no.* ### EXPAND
+yes.* ### CHECK
+.* ### EXPAND
+########
+
+CHECK
+####
+Without explanations, double check all the calculations in the List and correct if needed. Write only updated entries, or "All calculations are correct" if all value in the List are correct
+######
+All calculations are correct.* ### FINAL
+.* ### EXPAND
+########
+
+FINAL
+####
+In your prompt write only the integer value of the answer to the Question
+######
+.* ###  END
+########
