@@ -39,7 +39,7 @@ def data_reader(args):
     questions = []
     answers = []
 
-    if args.dataset == "gsm8k":
+    if args.dataset in ["gsm8k", "gsm8k_train"]:
         with open(args.dataset_path) as f:
             lines = f.readlines()
             for line in lines:
@@ -70,9 +70,9 @@ def get_response(prompt_input, eng, max_tokens, temperature):
             )
             time.sleep(3)
             return response
-        except openai.error.RateLimitError as e:
+        except:
             print('.', end='', flush=True)
-            time.sleep(2)
+            time.sleep(5)
 
     return response
 
@@ -165,6 +165,7 @@ def main():
                                                                      "through out whole conversation")
     parser.add_argument("--test_size", default=3, type=int, help="Size of the dataset to test")
     parser.add_argument("--prompt", default="gsm8k", type=str, help="Prompt to use")
+    parser.add_argument("--save_correct", default="false", type=bool, help="Save correct model answers")
     parser.add_argument("--assistant_role", default="default", type=str,
                         help="Assistants role in the reasoning process. Available: default/concise")
     parser.add_argument("--split_PQ", default=False, type=bool,
@@ -191,8 +192,12 @@ def main():
     config.max_tokens = args.max_tokens
     config.test_size = args.test_size
 
-    dataset_paths = {"gsm8k": "gsm8k/gsm8k.jsonl"}
+    dataset_paths = {"gsm8k": "gsm8k/gsm8k.jsonl", "gsm8k_train": "gsm8k_train/gsm8k_train.jsonl"}
+
     args.dataset_path = "dataset/{}".format(dataset_paths[args.dataset])
+
+    if args.save_correct:
+        correct_answers = []
 
     questions, answers = data_reader(args)
     qa_pairs = [(questions[idx], answers[idx]) for idx in range(len(questions))]
@@ -210,12 +215,12 @@ def main():
 
     if args.interactive_strategy:
         # Load interactive strategy prompts and state graph
-        with open(f"prompt/{args.dataset}/{args.prompt}.txt", "r", encoding='utf-8') as f:
+        with open(f"prompt/gsm8k/{args.prompt}.txt", "r", encoding='utf-8') as f:
             prompts, states = utils.load_strategy(f)
-        model_output_logs = open(f'dataset/gsm8k/model_output_{args.prompt}_logs.txt', 'w')
+        model_output_logs = open(f'dataset/{args.dataset}/model_output_{args.prompt}_logs.txt', 'w')
     else:
         # Load the initial prompt
-        with open(f"prompt/{args.dataset}/{args.prompt}.txt", "r", encoding='utf-8') as f:
+        with open(f"prompt/gsm8k/{args.prompt}.txt", "r", encoding='utf-8') as f:
             prompt = f.read().strip()
 
     config.prompt = prompt
@@ -223,7 +228,7 @@ def main():
     count = 0
     correct = 0.0
     acc = 0
-    model_output = open(f'dataset/gsm8k/model_output_{args.prompt}.txt', 'w')
+    model_output = open(f'dataset/{args.dataset}/model_output_{args.prompt}.txt', 'w', encoding="utf-8")
 
     table = wandb.Table(columns=["question", "answer"])
 
@@ -257,6 +262,9 @@ def main():
 
         if model_answer_value == extract_number_from_answer(answer):
             correct += 1
+            if args.save_correct:
+                correct_answers.append({"question": question, "answer": model_answer})
+
 
         acc = correct / count
         print("Correct ratio: ", acc)
@@ -264,6 +272,12 @@ def main():
     model_output.close()
     run.log({"accuracy": acc})
     run.log({"table_qa": table})
+
+    if args.save_correct:
+        with open(f"dataset/{args.dataset}/model_output_{args.prompt}_correct.jsonl", "w") as file:
+            for item in correct_answers:
+                json_string = json.dumps(item)
+                file.write(json_string + '\n')
 
 
 if __name__ == '__main__':
