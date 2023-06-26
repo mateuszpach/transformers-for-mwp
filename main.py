@@ -27,6 +27,7 @@ openai.api_key = key
 run = wandb.init(
     # Set the wandb project where this run will be logged
     project="mwp",
+    entity='mwp'
 )
 config = run.config
 

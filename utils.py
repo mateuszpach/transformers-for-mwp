@@ -23,7 +23,7 @@ def extract_number_from_answer(answer):
                 j += 1
             except ValueError:
                 break
-    return int(ans)
+    return float(ans)
     """
     if answer.endswith('.'):
         answer = answer[:-1]
